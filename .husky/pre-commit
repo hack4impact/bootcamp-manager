@@ -3,6 +3,5 @@
 # shellcheck source=/dev/null
 . "$(dirname "$0")/_/husky.sh"
 
-npm run format
 npm run lint
 npm test
