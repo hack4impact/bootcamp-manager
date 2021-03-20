@@ -25,3 +25,4 @@ jobs:
         VALIDATE_SHELL_SHFMT: false
         VALIDATE_BASH: false
         VALIDATE_BASH_EXEC: false
+        VALIDATE_TYPESCRIPT_STANDARD: false
