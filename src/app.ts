@@ -9,6 +9,6 @@ config()
   .then(() => {
     app.listen(8080);
   })
-  .catch((err) => {
-    console.log(`Config Error: ${err}`);
+  .catch((err: Error) => {
+    console.log(`Config Error: ${err.message}`);
   });
