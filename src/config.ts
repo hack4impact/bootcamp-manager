@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { config as configEnv } from "dotenv-safe";
 
-export default async function () {
+export async function config() {
   // configuring env variables
   configEnv({
     path: "./env/.env",
