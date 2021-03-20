@@ -12,7 +12,7 @@
     "format": "lint-staged",
     "lint": "concurrently \"eslint . --ext .js,.ts\" \"prettier --check .\"",
     "prepare": "husky install",
-    "test": "exit 0",
+    "test": "concurrently \"npm run lint\"",
     "dev": "nodemon src/app.ts"
   },
   "dependencies": {
