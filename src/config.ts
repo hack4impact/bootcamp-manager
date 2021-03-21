@@ -1,7 +1,13 @@
-import { DynamoDB } from "@aws-sdk/client-dynamodb";
+import {
+  CreateTableCommand,
+  CreateTableInput,
+  DynamoDBClient,
+  ListTablesCommand,
+} from "@aws-sdk/client-dynamodb";
 import { config as configEnv } from "dotenv-safe";
+import { TableNames, GetTable } from "../constants/tablesProperties";
 
-export let dbClient: DynamoDB;
+export let dbClient: DynamoDBClient;
 
 export async function config() {
   // configuring environment variables
@@ -12,7 +18,7 @@ export async function config() {
 
   // configuring dababase client
   try {
-    dbClient = new DynamoDB({
+    dbClient = new DynamoDBClient({
       endpoint: process.env.DYNAMODB_ENDPOINT || undefined,
       region: process.env.DYNAMODB_REGION,
     });
@@ -24,6 +30,15 @@ export async function config() {
   }
 }
 
-async function configureDatabase(dbClient: DynamoDB) {
-  await dbClient.listTables({});
+async function configureDatabase(dbClient: DynamoDBClient) {
+  const dbTables = await dbClient.send(new ListTablesCommand({}));
+  for (const tableName of TableNames as string[]) {
+    if (!dbTables.TableNames?.includes(tableName)) {
+      console.log(`Table "${tableName}" not found. Creating Table.`);
+      await dbClient.send(
+        new CreateTableCommand(GetTable(tableName) as CreateTableInput)
+      );
+      console.log(`Table "${tableName}" created.`);
+    }
+  }
 }
