@@ -5,7 +5,10 @@ import {
   ListTablesCommand,
 } from "@aws-sdk/client-dynamodb";
 import { config as configEnv } from "dotenv-safe";
-import { TableNames, GetTable } from "../constants/tablesProperties";
+import {
+  createTableInput,
+  tableProperties,
+} from "../constants/tablesProperties";
 
 export let dbClient: DynamoDBClient;
 
@@ -32,13 +35,16 @@ export async function config() {
 
 async function configureDatabase(dbClient: DynamoDBClient) {
   const dbTables = await dbClient.send(new ListTablesCommand({}));
-  for (const tableName of TableNames as string[]) {
-    if (!dbTables.TableNames?.includes(tableName)) {
-      console.log(`Table "${tableName}" not found. Creating Table.`);
+  for (const tableKey in tableProperties) {
+    const table = tableProperties[tableKey];
+    if (!dbTables.TableNames?.includes(table.name)) {
+      console.log(`Table "${table.name}" not found. Creating Table.`);
       await dbClient.send(
-        new CreateTableCommand(GetTable(tableName) as CreateTableInput)
+        new CreateTableCommand(
+          createTableInput(tableProperties[tableKey]) as CreateTableInput
+        )
       );
-      console.log(`Table "${tableName}" created.`);
+      console.log(`Table "${tableKey}" created.`);
     }
   }
 }
