@@ -1,5 +1,5 @@
 import { config as configEnv } from "dotenv-safe";
-import { mongoose } from "@typegoose/typegoose";
+import mongoose from "mongoose";
 
 export async function config() {
   // configuring environment variables

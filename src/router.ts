@@ -1,9 +1,7 @@
 import { Router, json } from "express";
-import registerRoute from "./routes/register";
+import { RegisterRouter } from "./routes/register";
 
-const router = Router();
-
+export const router = Router();
 router.use(json());
-router.post("/register", registerRoute);
 
-export default router;
+router.post("/register", RegisterRouter);

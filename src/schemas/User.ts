@@ -1,17 +1,17 @@
-import { getModelForClass, prop } from "@typegoose/typegoose";
+import { Schema, model, Document } from "mongoose";
 
-export class User {
-  @prop({ required: true, type: () => String })
-  public name!: string;
-
-  @prop({ required: true, type: () => String })
-  public chapterName!: string;
-
-  @prop({ required: true, type: () => String })
-  public chapterId!: string;
-
-  @prop({ required: true, type: () => String })
-  public slackId!: string;
+export interface User extends Document {
+  _id: string;
+  name: string;
+  chapterName: string;
+  chapterId: string;
 }
 
-export const UserModel = getModelForClass(User);
+const UserSchema = new Schema({
+  _id: String,
+  name: String,
+  chapterName: String,
+  chapterId: Number,
+});
+
+export const UserModel = model<User>("User", UserSchema);
