@@ -4,7 +4,7 @@ import {
   CreateTableInput,
   KeySchemaElement,
 } from "@aws-sdk/client-dynamodb";
-import { getDynamoKeyType } from "../src/db/objectToDynamoFormat";
+import { getDynamoKeyType } from "../src/db/dynamoFormat";
 
 export interface Table {
   name: string;

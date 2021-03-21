@@ -6,7 +6,7 @@ import {
 } from "../../../constants/tablesProperties";
 import User from "../../../types/user";
 import { dbClient } from "../../config";
-import { convertObjectToDynamoFormat as convertItemToDynamoFormat } from "../objectToDynamoFormat";
+import { convertObjectToAttributeValues } from "../dynamoFormat";
 
 export default async function (user: User) {
   if (!validatePrimaryKeys(tableProperties.usersTable as Table, user)) {
@@ -14,7 +14,7 @@ export default async function (user: User) {
       `Primary keys not found for table ${tableProperties.usersTable.name}. Object value: ${user}`
     );
   }
-  const dynamoDBObject = convertItemToDynamoFormat(user);
+  const dynamoDBObject = convertObjectToAttributeValues(user);
   await dbClient.send(
     new PutItemCommand({
       Item: dynamoDBObject,

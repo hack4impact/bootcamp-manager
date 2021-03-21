@@ -1,4 +1,4 @@
-export function convertObjectToDynamoFormat(object: Record<string, any>) {
+export function convertObjectToAttributeValues(object: Record<string, any>) {
   const dynamoObject: Record<string, any> = {};
   for (const key of Object.keys(object)) {
     const dynamoKeyType = getDynamoKeyType(object[key]);
