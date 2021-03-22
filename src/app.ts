@@ -3,7 +3,7 @@ import { config } from "./config";
 import { slackRouter } from "./slackRouter";
 
 const app = express();
-app.use(slackRouter);
+app.use("/slack", slackRouter);
 
 config()
   .then(() => {

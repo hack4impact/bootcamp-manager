@@ -5,4 +5,4 @@ import { Register } from "./routes/register";
 export const slackRouter = Router();
 slackRouter.use(json());
 
-slackRouter.use("/slack", slackCommand("register", Register));
+slackRouter.use(slackCommand("register", Register));
