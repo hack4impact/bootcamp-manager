@@ -1,9 +1,9 @@
 import express from "express";
 import { config } from "./config";
-import { router } from "./router";
+import { slackRouter } from "./slackRouter";
 
 const app = express();
-app.use(router);
+app.use(slackRouter);
 
 config()
   .then(() => {

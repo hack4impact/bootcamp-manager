@@ -1,11 +1,11 @@
 import { Request, Response, Router } from "express";
 import { body } from "express-validator";
-import { handleValidationErrors } from "../misc/handleValidationErrors";
+import { handleRequestValidationErrors } from "../misc/handleRequestValidationErrors";
 import { UserModel } from "../schemas/User";
 
-export const RegisterRouter = Router();
+export const Register = Router();
 
-RegisterRouter.use(
+Register.use(
   body("name").isString().isLength({
     min: 2,
   }),
@@ -19,7 +19,7 @@ RegisterRouter.use(
   body("chapterName").isString().isLength({
     min: 2,
   }),
-  handleValidationErrors,
+  handleRequestValidationErrors,
   addUser
 );
 
