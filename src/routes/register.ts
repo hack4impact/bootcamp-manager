@@ -1,52 +1,38 @@
 import { Request, Response, Router } from "express";
-import { body } from "express-validator";
-import { handleRequestValidationErrors } from "../misc/handleRequestValidationErrors";
-import { UserModel } from "../schemas/User";
+import registerMessage from "../../constants/slackMessageTemplates/registerMessage";
 
 export const Register = Router();
 
-Register.use(
-  body("name").isString().isLength({
-    min: 2,
-  }),
-  body("slackId").isString().isLength({
-    min: 5,
-  }),
-  body("chapterId").isInt({
-    min: 1,
-    max: 100,
-  }),
-  body("chapterName").isString().isLength({
-    min: 2,
-  }),
-  handleRequestValidationErrors,
-  addUser
-);
+Register.use(respond);
 
-async function addUser(req: Request, res: Response, next: Function) {
-  try {
-    const { name, chapterName, chapterId, slackId } = req.body;
-    if (await UserModel.exists({ _id: slackId })) {
-      res.status(401).json({
-        status: "error",
-        message: "User already exists.",
-      });
-      return;
-    }
-
-    await UserModel.create({
-      name,
-      chapterName,
-      chapterId,
-      _id: slackId,
-    });
-
-    res.status(200).end();
-  } catch (err) {
-    res.status(401).json({
-      status: "error",
-      message:
-        "There was an error fulfilling your request. Please try again later.",
-    });
-  }
+async function respond(req: Request, res: Response) {
+  res.json(registerMessage);
 }
+
+// async function addUser(req: Request, res: Response, next: Function) {
+//   try {
+//     const { name, chapterName, chapterId, slackId } = req.body;
+//     if (await UserModel.exists({ _id: slackId })) {
+//       res.status(401).json({
+//         status: "error",
+//         message: "User already exists.",
+//       });
+//       return;
+//     }
+
+//     await UserModel.create({
+//       name,
+//       chapterName,
+//       chapterId,
+//       _id: slackId,
+//     });
+
+//     res.status(200).end();
+//   } catch (err) {
+//     res.status(401).json({
+//       status: "error",
+//       message:
+//         "There was an error fulfilling your request. Please try again later.",
+//     });
+//   }
+// }

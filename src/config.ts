@@ -1,5 +1,8 @@
+import { WebClient } from "@slack/web-api";
 import { config as configEnv } from "dotenv-safe";
 import mongoose from "mongoose";
+
+export let slackWebClient: WebClient;
 
 export async function config() {
   // configuring environment variables
@@ -7,6 +10,13 @@ export async function config() {
     path: "./env/.env",
     example: "./env/.env.example",
   });
+
+  try {
+    slackWebClient = new WebClient(process.env.SLACK_TOKEN);
+    await slackWebClient.users.list();
+  } catch (err) {
+    console.error("Slack Web Client unable to connect.", err);
+  }
 
   // configuring dababase client
   try {
