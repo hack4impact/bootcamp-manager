@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import registerMessage from "../../constants/slackMessageTemplates/registerMessage";
+import { registerMessage } from "../../../utils/slackMessageTemplates/registerMessage";
 
 export const Register = Router();
 
