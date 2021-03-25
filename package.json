@@ -19,12 +19,14 @@
     "lint": "concurrently \"eslint . --ext .js,.ts\" \"prettier --check .\"",
     "prepare": "husky install",
     "test": "concurrently \"npm run lint\"",
-    "dev": "nodemon src/app.ts"
+    "dev": "nodemon src/app.ts",
+    "start": "ts-node src/app.ts"
   },
   "dependencies": {
     "@slack/events-api": "^3.0.0",
     "@slack/web-api": "^6.1.0",
     "@types/dotenv-safe": "^8.1.1",
+    "airtable": "^0.10.1",
     "aws-sdk": "^2.868.0",
     "axios": "^0.21.1",
     "concurrently": "^6.0.0",

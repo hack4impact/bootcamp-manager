@@ -1,8 +1,11 @@
-import express from "express";
+import express, { json, urlencoded } from "express";
 import { config } from "./config";
 import { slackRouter } from "./slackRouter";
 
 const app = express();
+app.use(json());
+app.use(urlencoded({ extended: false }));
+
 app.use("/slack", slackRouter);
 
 config()

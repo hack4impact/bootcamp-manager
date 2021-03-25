@@ -1,6 +1,7 @@
 import { WebClient } from "@slack/web-api";
 import { config as configEnv } from "dotenv-safe";
 import mongoose from "mongoose";
+import { setAirtableData } from "./utils/loadAirtableData";
 
 export let slackWebClient: WebClient;
 
@@ -16,6 +17,12 @@ export async function config() {
     await slackWebClient.users.list();
   } catch (err) {
     console.error("Slack Web Client unable to connect.", err);
+  }
+
+  try {
+    await setAirtableData();
+  } catch (err) {
+    console.error("Unable to load airtable data.", err);
   }
 
   // configuring dababase client

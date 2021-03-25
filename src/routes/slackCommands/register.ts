@@ -1,12 +1,14 @@
 import { Request, Response, Router } from "express";
-import { registerMessage } from "../../../utils/slackMessageTemplates/registerMessage";
+import { UserModel } from "../../schemas/User";
+import { registerMessage } from "../../utils/slackMessageTemplates/registerMessage";
 
 export const Register = Router();
 
 Register.use(respond);
 
 async function respond(req: Request, res: Response) {
-  res.json(registerMessage);
+  const userExists = await UserModel.exists({ _id: req.body.user_id });
+  res.json(registerMessage(userExists));
 }
 
 // async function addUser(req: Request, res: Response, next: Function) {
