@@ -1,17 +1,37 @@
-import express, { json, urlencoded } from "express";
+import { App } from "@slack/bolt";
 import { config } from "./config";
-import { slackRouter } from "./slackRouter";
+import { config as configEnv } from "dotenv-safe";
+import handleRegisterCommand from "./middleware/register/registerCommand";
+import * as registerMessageElements from "./utils/slackMessageTemplates/registerMessage/elements";
+import * as registerBlockActions from "./middleware/register/registerBlockActions";
 
-const app = express();
-app.use(json());
-app.use(urlencoded({ extended: false }));
+configEnv({
+  path: "./env/.env",
+  example: "./env/.env.example",
+});
 
-app.use("/slack", slackRouter);
+const app = new App({
+  token: process.env.SLACK_TOKEN,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+});
 
-config()
-  .then(() => {
-    app.listen(8080);
-  })
-  .catch((err: Error) => {
-    console.log(`Config Error: ${err.message}`);
-  });
+(async () => {
+  await config();
+  await app.start(process.env.PORT ? parseInt(process.env.PORT) : 8080);
+})();
+
+app.command("/register", handleRegisterCommand);
+app.action(
+  {
+    action_id: registerMessageElements.submitButton.action_id,
+    block_id: registerMessageElements.blockId,
+  },
+  registerBlockActions.submitButtonAction
+);
+app.action(
+  {
+    action_id: registerMessageElements.cancelButton.action_id,
+    block_id: registerMessageElements.blockId,
+  },
+  registerBlockActions.cancelBlockAction
+);

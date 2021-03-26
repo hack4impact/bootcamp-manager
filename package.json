@@ -23,6 +23,7 @@
     "start": "ts-node src/app.ts"
   },
   "dependencies": {
+    "@slack/bolt": "^3.3.0",
     "@slack/events-api": "^3.0.0",
     "@slack/web-api": "^6.1.0",
     "@types/dotenv-safe": "^8.1.1",
