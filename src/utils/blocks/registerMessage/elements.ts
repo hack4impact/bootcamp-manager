@@ -1,17 +1,6 @@
 import { StaticSelect } from "@slack/bolt";
 import { chapterData } from "../../loadAirtableData";
 
-export const cancelButton = {
-  type: "button",
-  text: {
-    type: "plain_text",
-    text: "Cancel",
-  },
-  value: "cancel",
-  action_id: "cancel",
-  style: "danger",
-};
-
 export const submitButton = {
   type: "button",
   text: {
@@ -30,31 +19,6 @@ export const chapterSelect: StaticSelect = {
     type: "plain_text",
     text: "Select a chapter",
   },
-};
-
-export const semesterSelect = {
-  action_id: "semesterSelect",
-  type: "static_select",
-  placeholder: {
-    type: "plain_text",
-    text: "Select a semester",
-  },
-  options: [
-    {
-      text: {
-        type: "plain_text",
-        text: "Current Semester",
-      },
-      value: "currentsemester",
-    },
-    {
-      text: {
-        type: "plain_text",
-        text: "Next Semester",
-      },
-      value: "nextsemester",
-    },
-  ],
 };
 
 export const blockId = "registerMessage";

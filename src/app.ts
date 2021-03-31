@@ -1,9 +1,9 @@
 import { App } from "@slack/bolt";
 import { config } from "./config";
 import { config as configEnv } from "dotenv-safe";
-import handleRegisterCommand from "./middleware/register/registerCommand";
-import * as registerMessageElements from "./utils/slackMessageTemplates/registerMessage/elements";
-import * as registerBlockActions from "./middleware/register/registerBlockActions";
+import * as registerMessageElements from "./utils/blocks/registerMessage/elements";
+import * as registerBlockActions from "./utils/blocks/registerMessage/registerBlockActions";
+import publishHome from "./utils/publishHome";
 
 configEnv({
   path: "./env/.env",
@@ -20,7 +20,6 @@ const app = new App({
   await app.start(process.env.PORT ? parseInt(process.env.PORT) : 8080);
 })();
 
-app.command("/register", handleRegisterCommand);
 app.action(
   {
     action_id: registerMessageElements.submitButton.action_id,
@@ -28,10 +27,4 @@ app.action(
   },
   registerBlockActions.submitButtonAction
 );
-app.action(
-  {
-    action_id: registerMessageElements.cancelButton.action_id,
-    block_id: registerMessageElements.blockId,
-  },
-  registerBlockActions.cancelBlockAction
-);
+app.event("app_home_opened", publishHome);
