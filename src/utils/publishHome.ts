@@ -1,6 +1,7 @@
 import { AllMiddlewareArgs, SlackEventMiddlewareArgs } from "@slack/bolt";
 import { UserModel } from "../schemas/User";
 import newUserView from "./views/home/newUserView";
+import studentsAssignmentViews from "./views/home/studentAssignmentsView";
 
 export default async function publishHome({
   event,
@@ -11,6 +12,11 @@ export default async function publishHome({
     client.views.publish({
       user_id: event.user,
       view: newUserView(),
+    });
+  } else {
+    client.views.publish({
+      user_id: event.user,
+      view: studentsAssignmentViews(),
     });
   }
 }

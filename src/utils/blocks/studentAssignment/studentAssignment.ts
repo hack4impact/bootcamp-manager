@@ -1,15 +1,14 @@
 import { KnownBlock } from "@slack/bolt";
+import { AssingnmentFields } from "../../../types/Assignment";
 import dividerTemplate from "../templates/dividerTemplate";
 import headerTemplate from "../templates/headerTemplate";
 import { submitButton } from "./elements";
 
 export default function studentAssignment(
-  assignmentName: string,
-  assignmentOrder: number,
-  assignmentLink: string
+  assignment: AssingnmentFields
 ): KnownBlock[] {
   return [
-    headerTemplate(`${assignmentOrder}. ${assignmentName}`),
+    headerTemplate(`${assignment.Order}. ${assignment.Name}`),
     {
       type: "section",
       text: {
@@ -19,8 +18,8 @@ export default function studentAssignment(
     },
     {
       type: "actions",
-      elements: [submitButton(assignmentOrder)],
-      block_id: `submit_assignment`,
+      elements: [submitButton(assignment.Order)],
+      block_id: `submit_assignment_${assignment.Order}`,
     },
     dividerTemplate(),
   ];

@@ -1,8 +1,9 @@
 import Airtable from "airtable";
 import Record from "airtable/lib/record";
+import { AssignmentRecord } from "../types/Assignment";
 
 export let chapterData: Record[] = [];
-export let assignmentData: Record[] = [];
+export let assignmentData: AssignmentRecord[];
 
 export async function setAirtableData() {
   const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
@@ -15,9 +16,9 @@ export async function setAirtableData() {
     })
     .firstPage();
 
-  assignmentData = await base("Assignments")
+  assignmentData = ((await base("Assignments")
     .select({
       view: "Grid view",
     })
-    .firstPage();
+    .firstPage()) as unknown) as AssignmentRecord[];
 }
