@@ -1,5 +1,8 @@
 # H4I Bootcamp Manager
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hack4impact/bootcamp-manager/Integrate)
+![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+
 A slack bot/web app for managing Hack4Impact bootcamps. Provides a convienient interface for H4I bootcampers to submit their assignments to bootcamp leaders. Uses MongoDB Atlas, Airtable, Node.js w/ typescript, and the Slack Bolt API.
 
 ## How to install the project
