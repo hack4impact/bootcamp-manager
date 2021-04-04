@@ -1,0 +1,36 @@
+{
+  "projectName": "Bootcamp Manager",
+  "projectOwner": "Hack4Impact",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "eslint",
+  "contributors": [
+    {
+      "login": "subatuba21",
+      "name": "Subha Das",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34824571?v=4",
+      "profile": "https://github.com/subatuba21",
+      "contributions": [
+        "doc",
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "Holben888",
+      "name": "Benjamin Holmes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31811199?v=4",
+      "profile": "https://bholmes.dev/",
+      "contributions": [
+        "ideas",
+        "projectManagement"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

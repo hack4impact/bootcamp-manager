@@ -30,3 +30,24 @@ A slack bot/web app for managing Hack4Impact bootcamps. Provides a convienient i
 8. On another terminal run `ngrok http 8080` or whatever port you specify in .env
 9. Go to your slack app settings and put `https://yourNgrokUrl/slack/events` as the URL for event subscriptions and interactivity
 10. Head to your app home in your slack workspace and you should see the app working!
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/subatuba21"><img src="https://avatars.githubusercontent.com/u/34824571?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Subha Das</b></sub></a><br /><a href="https://github.com/Hack4Impact/Bootcamp Manager/commits?author=subatuba21" title="Documentation">📖</a> <a href="https://github.com/Hack4Impact/Bootcamp Manager/commits?author=subatuba21" title="Code">💻</a> <a href="#ideas-subatuba21" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://bholmes.dev/"><img src="https://avatars.githubusercontent.com/u/31811199?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Benjamin Holmes</b></sub></a><br /><a href="#ideas-Holben888" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-Holben888" title="Project Management">📆</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
