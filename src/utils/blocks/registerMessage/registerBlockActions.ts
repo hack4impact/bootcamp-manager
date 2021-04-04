@@ -5,6 +5,7 @@ import {
   SlackActionMiddlewareArgs,
 } from "@slack/bolt";
 import { UserModel } from "../../../schemas/User";
+import { chapterData } from "../../airtable/loadAirtableData";
 import registrationConfirmedModal from "../../views/modals/registrationConfirmedModal";
 import { blockId, chapterSelect } from "./elements";
 
@@ -20,7 +21,6 @@ export async function submitButtonAction({
     blockId
   ][chapterSelect.action_id as string].selected_option?.value;
 
-  console.log(chapterSelectResult);
   if (chapterSelectResult) {
     let user = await UserModel.findById(body.user.id);
     if (user) {
@@ -28,9 +28,18 @@ export async function submitButtonAction({
         "Registered user sent 'registration' Home view. Should be sent 'assignments' view."
       );
     } else {
+      const chapterId = chapterData.find(
+        (chapter) => chapter.fields["Chapter Name"] === chapterSelectResult
+      )?.id;
+      if (!chapterId) {
+        throw new Error(
+          "Chapter selected does not have a corresponding airtable id."
+        );
+      }
       user = new UserModel({
         _id: body.user.id,
         chapterName: chapterSelectResult,
+        chapterId,
       });
     }
     await user.save();

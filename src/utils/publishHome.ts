@@ -7,7 +7,7 @@ export default async function publishHome({
   event,
   client,
 }: SlackEventMiddlewareArgs<"app_home_opened"> & AllMiddlewareArgs) {
-  const user = UserModel.findById({ _id: event.user });
+  const user = await UserModel.findById({ _id: event.user });
   if (!user) {
     client.views.publish({
       user_id: event.user,
@@ -16,7 +16,7 @@ export default async function publishHome({
   } else {
     client.views.publish({
       user_id: event.user,
-      view: studentsAssignmentViews(),
+      view: await studentsAssignmentViews(event.user),
     });
   }
 }

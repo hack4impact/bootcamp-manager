@@ -3,10 +3,12 @@
 export interface AssingnmentFields {
   Name: string;
   Order: number;
+  Link: string;
 }
 
 export interface AssignmentRecord {
   id: string;
   fields: AssingnmentFields;
   createdTime: string;
+  submissionLink?: string;
 }

@@ -4,6 +4,9 @@ import { config as configEnv } from "dotenv-safe";
 import * as registerMessageElements from "./utils/blocks/registerMessage/elements";
 import * as registerBlockActions from "./utils/blocks/registerMessage/registerBlockActions";
 import publishHome from "./utils/publishHome";
+import handleSubmitClick from "./utils/views/modals/submitAssignmentModal/handleSubmitClick";
+import handleLinkSubmission from "./utils/blocks/submitAssignmentInput/handleLinkSubmission";
+import { callbackIdPrefix } from "./utils/views/modals/submitAssignmentModal/submitAssignmentModal";
 
 configEnv({
   path: "./env/.env",
@@ -28,3 +31,6 @@ app.action(
   registerBlockActions.submitButtonAction
 );
 app.event("app_home_opened", publishHome);
+
+app.action(/submit_assignment_/i, handleSubmitClick);
+app.view(new RegExp(callbackIdPrefix), handleLinkSubmission);

@@ -11,6 +11,7 @@ const UserSchema = new Schema({
   _id: String,
   name: String,
   chapterName: String,
+  chapterId: String,
 });
 
 export const UserModel = model<User>("User", UserSchema);

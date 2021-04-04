@@ -1,5 +1,5 @@
 import { StaticSelect } from "@slack/bolt";
-import { chapterData } from "../../loadAirtableData";
+import { chapterData } from "../../airtable/loadAirtableData";
 
 export const submitButton = {
   type: "button",
@@ -29,9 +29,9 @@ export function createChapterOptions() {
     chapterOptions.push({
       text: {
         type: "plain_text",
-        text: chapter.get("Chapter Name"),
+        text: chapter.fields["Chapter Name"],
       },
-      value: chapter.get("Chapter Name"),
+      value: chapter.fields["Chapter Name"],
     });
   });
   return chapterOptions;

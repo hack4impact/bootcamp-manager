@@ -1,6 +1,6 @@
 import { WebClient } from "@slack/web-api";
 import mongoose from "mongoose";
-import { setAirtableData } from "./utils/loadAirtableData";
+import { setAirtableData } from "./utils/airtable/loadAirtableData";
 
 export let slackWebClient: WebClient;
 
