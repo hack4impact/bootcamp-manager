@@ -1,8 +1,4 @@
-<h1 align="center">
-
-    H4I Bootcamp Manager
-
-</h1>
+<h1 align="center">H4I Bootcamp Manager</h1>
 
 <p align="center">
    <img src="https://github.com/hack4impact/bootcamp-manager/blob/main/static/logo.png?raw=true" alt="Project Logo">
