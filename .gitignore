@@ -2,3 +2,5 @@ node_modules/
 build/
 env/.env
 ignore/
+
+.DS_STORE
