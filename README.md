@@ -13,16 +13,16 @@ A slack bot/web app for managing Hack4Impact bootcamps. Provides a convienient i
 
 ## How to use the project
 
-1. Head to the "env" folder
-2. Create a personal slack workspace for the development of this project
-3. Create an app in your workspace
-4. Retrieve the Slack Signing Secret and Slack API Token for your slack app
-5. Fill out the environment variables as described by .env.example
+1. Create a personal slack workspace for the development of this project
+2. Create an app in your workspace
+3. Retrieve the Slack Signing Secret and Slack API Token for your slack app
+4. Head to the "env" folder and create a file named .env
+5. Fill out the environment variables in ".env" as specified by ".env.example"
    1. Add a MongoDB Atlas URL
    2. Add your Airtable API key and base ID
    3. Add the Slack API secrets for your workspace
 6. Run `npm run dev`
 7. Install ngrok
-8. On another terminal run `ngrok 8080` or whatever port you specify in .env
+8. On another terminal run `ngrok http 8080` or whatever port you specify in .env
 9. Go to your slack app settings and put `https://yourNgrokUrl/slack/events` as the URL for event subscriptions and interactivity
 10. Head to your slack home in your workspace and you should see the app working!
