@@ -9,13 +9,13 @@
 
 A slack bot/web app for managing Hack4Impact bootcamps. Provides a convienient interface for H4I bootcampers to submit their assignments to bootcamp leaders. Uses MongoDB Atlas, Airtable, Node.js w/ typescript, and the Slack Bolt API.
 
-## How to install the project
+## Installation
 
 1. Clone the repository.
 2. Go to the project directory
 3. Run `npm i`
 
-## How to use the project
+## Usage
 
 1. Create a personal slack workspace for the development of this project
 2. Create an app in your workspace

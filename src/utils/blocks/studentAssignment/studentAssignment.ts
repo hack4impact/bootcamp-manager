@@ -11,7 +11,7 @@ export default function studentAssignment(
 ): KnownBlock[] {
   return [
     dividerTemplate(),
-    headerTemplate(`${assignment.Order}. ${assignment.Name}`),
+    headerTemplate(assignment.Name),
     {
       type: "section",
       text: {

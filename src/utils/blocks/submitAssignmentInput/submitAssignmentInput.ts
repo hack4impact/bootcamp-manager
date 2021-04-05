@@ -1,7 +1,12 @@
-import { InputBlock } from "@slack/bolt";
+import { InputBlock, PlainTextInput } from "@slack/bolt";
 
 export const inputPrefix = "submit_link_assignment_";
 export const inputRegex = new RegExp(inputPrefix, "i");
+
+export const inputElement: PlainTextInput = {
+  type: "plain_text_input",
+  action_id: "assignment_link",
+};
 
 export function submitAssignmentInput(assignmentId: string): InputBlock {
   return {
@@ -10,10 +15,7 @@ export function submitAssignmentInput(assignmentId: string): InputBlock {
       type: "plain_text",
       text: "Assignment Link",
     },
-    element: {
-      type: "plain_text_input",
-      action_id: `${inputPrefix}${assignmentId}`,
-    },
+    element: inputElement,
     block_id: `${inputPrefix}${assignmentId}`,
   };
 }
