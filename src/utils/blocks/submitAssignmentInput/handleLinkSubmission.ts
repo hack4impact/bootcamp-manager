@@ -1,5 +1,6 @@
 import { AllMiddlewareArgs, SlackViewMiddlewareArgs } from "@slack/bolt";
 import { SubmissionModel } from "../../../schemas/Submission";
+import { publishHome } from "../../publishHome";
 import { inputElement, inputPrefix } from "./submitAssignmentInput";
 
 export default async function handleLinkSubmission({
@@ -25,4 +26,6 @@ export default async function handleLinkSubmission({
 
     await submission.save();
   }
+
+  await publishHome(client, body.user.id);
 }

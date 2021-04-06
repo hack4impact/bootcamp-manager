@@ -10,8 +10,8 @@ export interface Bootcamp extends Document {
 const BootcampSchema = new Schema({
   chapterId: String,
   start: Date,
-  name: String,
   end: Date,
+  name: String,
 });
 
 export const SubmissionModel = model<Bootcamp>("Bootcamp", BootcampSchema);
