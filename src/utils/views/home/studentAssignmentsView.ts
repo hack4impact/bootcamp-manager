@@ -45,11 +45,8 @@ async function generateCompletedAssignments(
       assignmentId: record.id,
       user: studentId,
     });
-    const submissionLinkStr = submissionLinks.map(
-      (submission) => submission.link
-    );
     blocks = blocks.concat(
-      completedAssignment(record.fields, record.id, submissionLinkStr)
+      completedAssignment(record.fields, record.id, submissionLinks)
     );
   }
   return blocks;

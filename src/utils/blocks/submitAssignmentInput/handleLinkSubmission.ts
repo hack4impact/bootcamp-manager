@@ -19,7 +19,7 @@ export default async function handleLinkSubmission({
       assignmentId,
       link: submissionLink,
       user: body.user.id,
-      date: new Date(),
+      submissionDate: new Date(),
       reviewed: false,
     });
 
