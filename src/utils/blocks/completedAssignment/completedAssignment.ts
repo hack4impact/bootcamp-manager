@@ -24,10 +24,15 @@ export default function completedAssignment(
   ];
 }
 
-function submissionsToMarkdown(submission: Submission) {
-  return markdownTemplate(
-    `(${submission.submissionDate.toLocaleDateString()}) <${submission.link}>`
-  );
+function submissionsToMarkdown(
+  submission: Submission,
+  index: number,
+  array: Submission[]
+) {
+  const content =
+    (array.length - 1 === index ? "*Latest:* " : "") +
+    `(${submission.submissionDate.toLocaleDateString()}) <${submission.link}>`;
+  return markdownTemplate(content);
 }
 
 function sortSubmissionsByDate(sub1: Submission, sub2: Submission) {

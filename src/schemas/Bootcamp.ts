@@ -14,4 +14,4 @@ const BootcampSchema = new Schema({
   name: String,
 });
 
-export const SubmissionModel = model<Bootcamp>("Bootcamp", BootcampSchema);
+export const BootcampModel = model<Bootcamp>("Bootcamp", BootcampSchema);

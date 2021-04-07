@@ -13,9 +13,9 @@ export default async function studentsAssignmentViews(
   return {
     type: "home",
     blocks: [
-      headerTemplate("Assignments"),
+      headerTemplate("To-Do Assignments :books:"),
       ...(await generateTodoAssignments(studentId, filteredAssignments.todo)),
-      headerTemplate("Completed Assignments"),
+      headerTemplate("Completed Assignments :white_check_mark:"),
       ...(await generateCompletedAssignments(
         studentId,
         filteredAssignments.completed

@@ -1,6 +1,7 @@
 import { AllMiddlewareArgs, SlackEventMiddlewareArgs } from "@slack/bolt";
 import { WebClient } from "@slack/web-api";
 import { UserModel } from "../schemas/User";
+import managerView from "./views/home/managerView";
 import newUserView from "./views/home/newUserView";
 import studentsAssignmentViews from "./views/home/studentAssignmentsView";
 
@@ -17,6 +18,11 @@ export async function publishHome(client: WebClient, userId: string) {
     client.views.publish({
       user_id: userId,
       view: newUserView(),
+    });
+  } else if (user.manager) {
+    client.views.publish({
+      user_id: userId,
+      view: await managerView(),
     });
   } else {
     client.views.publish({

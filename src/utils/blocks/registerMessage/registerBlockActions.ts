@@ -6,6 +6,7 @@ import {
 } from "@slack/bolt";
 import { UserModel } from "../../../schemas/User";
 import { chapterData } from "../../airtable/loadAirtableData";
+import { publishHome } from "../../publishHome";
 import registrationConfirmedModal from "../../views/modals/registrationConfirmedModal";
 import { blockId, chapterSelect } from "./elements";
 
@@ -47,5 +48,7 @@ export async function submitButtonAction({
       trigger_id: (body as Record<string, any>).trigger_id,
       view: registrationConfirmedModal(chapterSelectResult),
     });
+
+    await publishHome(client, body.user.id);
   }
 }

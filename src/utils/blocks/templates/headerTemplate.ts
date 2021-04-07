@@ -6,6 +6,7 @@ export default function headerTemplate(text: string): HeaderBlock {
     text: {
       type: "plain_text",
       text,
+      emoji: true,
     },
   };
 }

@@ -5,6 +5,7 @@ export interface User extends Document {
   name: string;
   chapterName: string;
   chapterId: string;
+  manager?: boolean;
 }
 
 const UserSchema = new Schema({
@@ -12,6 +13,7 @@ const UserSchema = new Schema({
   name: String,
   chapterName: String,
   chapterId: String,
+  manager: Boolean,
 });
 
 export const UserModel = model<User>("User", UserSchema);
