@@ -6,6 +6,7 @@ export interface Fields {
   "Custom Assignments": string[];
   "Chapter Email": string;
   "Omitted Assignments": string[];
+  "Leader Slack ID": string;
 }
 
 export interface ChapterRecord {

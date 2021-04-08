@@ -6,7 +6,9 @@ import {
 } from "@slack/bolt";
 import { UserModel } from "../../../schemas/User";
 import { chapterData } from "../../airtable/loadAirtableData";
+import getCurrentBootcamp from "../../bootcamp/getCurrentBootcamp";
 import { publishHome } from "../../publishHome";
+import bootcampNotAvailable from "../../views/modals/bootcampNotAvailable";
 import registrationConfirmedModal from "../../views/modals/registrationConfirmedModal";
 import { blockId, chapterSelect } from "./elements";
 
@@ -29,20 +31,33 @@ export async function submitButtonAction({
         "Registered user sent 'registration' Home view. Should be sent 'assignments' view."
       );
     } else {
-      const chapterId = chapterData.find(
+      const chapter = chapterData.find(
         (chapter) => chapter.fields["Chapter Name"] === chapterSelectResult
-      )?.id;
-      if (!chapterId) {
+      );
+
+      if (!chapter) {
         throw new Error(
           "Chapter selected does not have a corresponding airtable id."
         );
       }
+
+      const bootcamp = await getCurrentBootcamp(chapter.id);
+
+      if (!bootcamp) {
+        await client.views.open({
+          trigger_id: (body as Record<string, any>).trigger_id,
+          view: bootcampNotAvailable(chapter),
+        });
+        return;
+      }
+
       user = new UserModel({
         _id: body.user.id,
         chapterName: chapterSelectResult,
-        chapterId,
+        chapterId: chapter.id,
       });
     }
+
     await user.save();
     await client.views.open({
       trigger_id: (body as Record<string, any>).trigger_id,
