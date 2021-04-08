@@ -1,8 +1,8 @@
-<h1 align="center">H4I Bootcamp Manager</h1>
-
 <p align="center">
    <img src="https://github.com/hack4impact/bootcamp-manager/blob/main/static/logo.png?raw=true" alt="Project Logo" width="300" height="300">
 </p>
+
+<h1 align="center">H4I Bootcamp Manager</h1>
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hack4impact/bootcamp-manager/Integrate)
 ![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
